@@ -1,0 +1,62 @@
+git init
+git add .
+git commit -m "msg"
+git remote add origin https://github.com/ayushdama11/namasteReact.git
+git push origin main
+
+npm init - give instructions
+
+package.json is configuration for npm
+
+
+npm install -D parcel   - -D are the dev dependencies - those which are required in our development phase, normal dependices are used in production also
+
+we should put our package.json and package-lock.json on git because they maintain the note of all the packages and dependencies which we need in our projectt.
+
+we should not put our node_modules on git - write it on .gitignore
+
+if we delete node_modules, we can redownload it by writing 'npm install' in terminal
+
+Parcel is a web application bundler that can be used with React.js to streamline the development process. 
+
+npx parcel index.html
+index.html specifies the entry point of your application. In this case, index.html is the file that Parcel will start with. Parcel will parse this HTML file, find any linked assets like JavaScript, CSS, images, etc., and bundle them together.
+
+npx - means executing a package , npm- installing a package
+
+
+cdn links are not preferable way to use react in the project.
+
+installing react using npm as a package - npm install react - no -D as we want it as normal depenedecy and not as a dev depenedecy
+npm install react
+npm install react-dom
+
+after this we have to write import React from "react";import ReactDOM from "react-dom/client";
+
+also we have to write module in the script tag of index.html :- 
+    <script type="module" src="./App.js"></script>
+
+
+for doing prod build write this in terminal
+npx parcel build index.html     -- this will give error so 
+so to remove that error remmove main=App.js from package.json
+
+the dist folder contains the minified files of our html, css, js codes 
+updation is done using parcel-cache inside dist
+ignore mapper files
+
+
+to tell what all browsers can our app work in , so for that we have to configure package.json
+add browserslist 
+
+
+for starting the app we write -
+start and build scripts in scripts section of package.json
+for using this scripts we just have to write - 
+npm run start and npm run build 
+or npm start --- only for start not for other scripts
+
+
+
+
+

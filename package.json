@@ -1,0 +1,29 @@
+{
+  "name": "namastereact",
+  "version": "1.0.0",
+  "description": "this is namaste react by akshay saini",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/ayushdama11/namasteReact.git)"
+  },
+  "keywords": [],
+  "author": "Ayush Dama",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "browserslist":[  
+    "last 2 Chrome version",
+    "last 2 Firefox version"
+  ]
+}
