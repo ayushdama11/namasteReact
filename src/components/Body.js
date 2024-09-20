@@ -1,9 +1,9 @@
-import RestaurantCard from "./RestaurantCard";
-// import resList from "../utils/mockData";
-import { useEffect, useState } from "react";
-import Shimmer from "./Shimmer";
+import RestaurantCard from "./RestaurantCard"; 
+// import resList from "../utils/mockData"; 
+import { useEffect, useState } from "react"; 
+import Shimmer from "./Shimmer"; 
 
-const Body = ()=>{
+const Body = ()=>{ 
 
     // what makes react app fast is its react fiber - which does the react reconcillation of the componeents and finds the diffrence between updated virtual dom and previous virtual dom and updates the dom only when required.
 
@@ -16,10 +16,10 @@ const Body = ()=>{
     const [listOfRestaurants, setlistOfRestaurant] = useState([]); 
 
     // copy of listOfRestaurants for filteredRestaurant
-    const [filteredRestaurant, setfilteredRestaurant] = useState([]);
+    const [filteredRestaurant, setfilteredRestaurant] = useState([]); 
 
     // whenever state variable updates, react triggers a reconcilliation cycle i.e it re renders the componenets
-    const [searchText, setSearchText]= useState("");
+    const [searchText, setSearchText]= useState(""); 
     
     // useEffect hook - normal react hook
     // gets 2 arguments - callback fuunction and a dependecy array - where second argument is optional.
@@ -27,25 +27,22 @@ const Body = ()=>{
     // The useEffect Hook allows you to perform side effects in your components.
     // Some examples of side effects are: fetching data, directly updating the DOM, and timers.
 
-    useEffect(()=>{
-        fetchData();
-    }, []);
+    useEffect(()=>{ 
+        fetchData(); 
+    }, []); 
 
-    // this will be called first as compared to useeffect's callback
-    // console.log("Body component rendered")
+    // this will be called first as compared to useeffect's callback 
+    // console.log("Body component rendered") 
 
-    const fetchData = async () => {
-        const data = await fetch(
+    const fetchData = async () => { 
+        const data = await fetch( 
             "https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.73390&lng=76.78890&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-        );
-        const json = await data.json();
-
-        console.log(json);
-
-
-        // Optional Chaining
-        setlistOfRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setfilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        ); 
+        const json = await data.json(); 
+        console.log(json); 
+        // Optional Chaining  
+        setlistOfRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
+        setfilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
     }
 
 
