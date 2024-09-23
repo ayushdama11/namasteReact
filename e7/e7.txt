@@ -47,11 +47,11 @@ const AppLayout = ()=>{
 RouterProvider - 
 root.render(<RouterProvider router={appRouter} />);
 
-
+link - makes any component or object a clickable thing , so whenever somone clicks on it i thovers the route present on it 
 import { Link } from "react-router-dom";
 <li><Link to="/">Home</Link></li>
 <li><Link to="/about">About Us</Link></li>
-d
+
 
 
 import { useRouteError } from "react-router-dom";
