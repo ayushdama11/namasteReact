@@ -5,6 +5,7 @@ we made a routing for our restaurant's were when someone clicks on the restauran
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 createBrowserRouter contains alll the routes - also includes children of the main route
+
 const appRouter = createBrowserRouter([
     {
         path: "/",
@@ -47,7 +48,7 @@ const AppLayout = ()=>{
 RouterProvider - 
 root.render(<RouterProvider router={appRouter} />);
 
-link - makes any component or object a clickable thing , so whenever somone clicks on it i thovers the route present on it 
+link - makes any component or object a clickable thing , so whenever somone clicks on it it hovers the route present on it 
 import { Link } from "react-router-dom";
 <li><Link to="/">Home</Link></li>
 <li><Link to="/about">About Us</Link></li>

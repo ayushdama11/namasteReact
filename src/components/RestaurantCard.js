@@ -12,7 +12,8 @@ const RestaurantCard = (props)=>{
                 alt="res-logo"
                 src={
                   CDN_URL
-                  +cloudinaryImageId}
+                  +cloudinaryImageId
+                }
             />
             <h3>{name}</h3>
             <h4>{cuisines.join(' , ')}</h4>
