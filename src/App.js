@@ -1,5 +1,5 @@
 // we use import keyword for importing react into our project from node_modules
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -9,6 +9,15 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
+// import Grocery from "./components/Grocery";
+
+// Chunking
+// Code Splitting
+// Lazy Loading
+// Dynamic Bundling
+// On-demand loading
+// ----- we will use grocery componenet using new bundler - i.e using chunking 
+const Grocery = lazy(()=> import("./components/Grocery"));
 
 const AppLayout = ()=>{
     return (
@@ -36,6 +45,11 @@ const appRouter = createBrowserRouter([
             {
                 path: "/contact",
                 element: <Contact />
+            },
+            {
+                path: "/grocery",
+                // Suspense ham tab use karte hai jab ham lazy loading use kar rae hote hai , fallback matlab jb tak wo page load ho ra hai tab tak ye suspense loading dikhaega 
+                element: <Suspense fallback={<h1>Loading....</h1>}><Grocery /></Suspense>
             },
             // dynamic path - ":" - as here restaurant id will change for each restaurant.
             {

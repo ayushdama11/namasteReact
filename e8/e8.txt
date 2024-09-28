@@ -1,0 +1,6 @@
+Parent Constructor
+Parent component
+Child constructor
+Child component
+Child Component Did Mount
+Parent Component Did Mount

@@ -3,9 +3,10 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react"; 
 import Shimmer from "./Shimmer"; 
 import {Link} from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = ()=>{ 
-
+ 
     // what makes react app fast is its react fiber - which does the react reconcillation of the componeents and finds the diffrence between updated virtual dom and previous virtual dom and updates the dom only when required.
 
     // Local state variable - Super powerful variable - for that we use hooks called as useState
@@ -66,6 +67,9 @@ const Body = ()=>{
 
     // onChange
     // while creating search div we are assigning value of search to searchText and initally we have given the value of searchText as "" so to update that value on any change at the search bar we use onChange Method 
+
+    const onlineStatus = useOnlineStatus();
+    if(onlineStatus === false) return <h1>Looks like you are offline, please check your internet connection !!</h1>
 
     return listOfRestaurants.length === 0 ? <Shimmer /> : (
         <div className="body">

@@ -1,17 +1,31 @@
+import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
-import useRestaurantMenu from "../utils/useRestaurantMenu";
+import { MENU_API } from "../utils/constants";
+
 
 const RestaurantMenu = ()=>{
+
+    const [resInfo,setresInfo] = useState(null);
 
     // useParams() give us id of the restaurant 
     const {resid} = useParams();
     console.log(resid);
 
-    // ** Custom Hooks
-    const resInfo = useRestaurantMenu(resid);
+    useEffect(()=>{
+        fetchMenu();
+    }, []);
+    
+    const fetchMenu = async()=>{
+        const data = await fetch(MENU_API+resid);
+        const json = await data.json();
+        console.log(json);
+
+        setresInfo(json.data);
+    }
 
     if(resInfo === null) return <Shimmer/>;
+
     // if not null than only do destructuring properties otherwise you will get error
 
     const {name, cuisines,costForTwoMessage} = resInfo?.cards[2]?.card?.card?.info;
