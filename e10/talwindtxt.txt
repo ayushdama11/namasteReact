@@ -1,0 +1,5 @@
+npm install -D tailwindcss postcss
+npx tailwindcss init
+
+tailwind css uses post css in backend , basically helps connecting the js code with css 
+ 
