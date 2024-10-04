@@ -96,11 +96,11 @@ const Body = ()=>{
                 </div>
                 
                 <div className="search m-4 p-4 flex items-center rounded-lg">
-                    <button
+                    <button 
                     className="px-4 py-2 bg-gray-100"
                     onClick={() => {   // filter out top rated restaurants
                         const filteredList = listOfRestaurants.filter(
-                            (res)=>res.info.avgRating>4.5
+                            (res)=>res.info.avgRating>4.5 
                         );
                         setfilteredRestaurant(filteredList);
                     }}
