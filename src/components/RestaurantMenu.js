@@ -1,12 +1,13 @@
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = ()=>{
 
     // useParams() give us id of the restaurant 
     const {resid} = useParams();
-    console.log(resid);
+    // console.log(resid);
 
     // ** Custom Hooks
     const resInfo = useRestaurantMenu(resid);
@@ -26,7 +27,7 @@ const RestaurantMenu = ()=>{
              c.card?.card?.["@type"]===
              "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
         );
-    console.log(categories);
+    // console.log(categories);
 
     return(
         <div className="text-center">
@@ -34,8 +35,11 @@ const RestaurantMenu = ()=>{
             <p className="font-bold text-lg">
                 {cuisines.join(", ")} - {costForTwoMessage}
             </p>
-            
+
             {/* categories accordion */}
+            {categories.map((category) => (
+                <RestaurantCategory key={category?.card?.card.title} data={category?.card?.card} />
+            ))}
         </div>
     );
 };
