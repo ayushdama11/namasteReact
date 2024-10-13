@@ -1,9 +1,10 @@
-import RestaurantCard from "./RestaurantCard"; 
+import RestaurantCard, {withRatingsLabel} from "./RestaurantCard"; 
 // import resList from "../utils/mockData"; 
 import { useEffect, useState } from "react"; 
 import Shimmer from "./Shimmer"; 
 import {Link} from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+
 
 const Body = ()=>{ 
  
@@ -22,9 +23,14 @@ const Body = ()=>{
 
     // whenever state variable updates, react triggers a reconcilliation cycle i.e it re renders the componenets
     const [searchText, setSearchText]= useState(""); 
+
+    console.log("Body Rendered" , listOfRestaurants);
+
+    // displaying the higher order component - withRatingsLabel
+    const RestaurantCardRated = withRatingsLabel(RestaurantCard);
     
     // useEffect hook - normal react hook
-    // gets 2 arguments - callback fuunction and a dependecy array - where second argument is optional.
+    // gets 2 arguments - callback fuunction and a dependecy  array - where second argument is optional.
     // useEffect's callback will be called after our component renders
     // The useEffect Hook allows you to perform side effects in your components.
     // Some examples of side effects are: fetching data, directly updating the DOM, and timers.
@@ -32,6 +38,8 @@ const Body = ()=>{
     useEffect(()=>{ 
         fetchData(); 
     }, []); 
+
+    
 
     // this will be called first as compared to useeffect's callback 
     // console.log("Body component rendered") 
@@ -80,7 +88,8 @@ const Body = ()=>{
                      value={searchText} 
                      onChange={(e)=>{
                         setSearchText(e.target.value);
-                    }} />
+                     }} 
+                    />
                     <button 
                      className="px-4 py-2 bg-green-100 m-4 rounded-lg"
                      onClick={()=>{
@@ -91,7 +100,8 @@ const Body = ()=>{
                             (res)=> res.info.name.toLowerCase().includes(searchText.toLowerCase())
                         );
                         setfilteredRestaurant(filteredRestaurant);
-                    }}>
+                     }}
+                    >
                     Search</button>
                 </div>
                 
@@ -117,7 +127,9 @@ const Body = ()=>{
                      key={restaurant.info.id}
                      to={"/restaurants/"+restaurant.info.id}
                     >
-                     <RestaurantCard resData={restaurant} />
+                    {/* to display the total ratings which are given to that restaurant - higher order component */}
+                     <RestaurantCardRated resData={restaurant} />
+                     {/* ( <RestaurantCard resData={restaurant} /> ) */}
                     </Link>
                 ))}                
             </div>

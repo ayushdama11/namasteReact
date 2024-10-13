@@ -3,7 +3,7 @@ import { CDN_URL } from "../utils/constants";
 const RestaurantCard = (props)=>{
     const {resData} = props;
 
-    const {cloudinaryImageId,name,avgRating,cuisines,costForTwo,sla} = resData.info;    // optional chaining
+    const {cloudinaryImageId,name,avgRating,cuisines,costForTwo,sla} = resData.info; 
 
     return (
         <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-50 hover:bg-gray-200">
@@ -23,5 +23,25 @@ const RestaurantCard = (props)=>{
         </div>
     );
 };
+
+
+// Higher order component - display total ratings given to the restaurant
+// input - restaurant card =>> restaurant card with ratings
+
+export const withRatingsLabel = (RestaurantCard) => {
+    // returns a function or component - higher order component
+    return (props) => {
+        const {resData} = props;
+        const {totalRatingsString} = resData.info;        
+        return (
+            <div>
+                <label className="absolute bg-black text-white m-2 p-2 rounded-lg"> {totalRatingsString} </label>
+                <RestaurantCard {...props} />
+            </div>
+        );
+    };
+}
+
+
 
 export default RestaurantCard;

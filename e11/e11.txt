@@ -1,1 +1,1 @@
-higher order component is the function that takes a component and returns a component
+higher order component is the function that takes a component and returns a component.
