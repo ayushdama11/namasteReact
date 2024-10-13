@@ -1,1 +1,6 @@
 higher order component is the function that takes a component and returns a component.
+
+
+Controlled and Uncontrolled component :-
+Controlled component - when the component is controlled by the parent componenet than it is called controlled component
+Uncontrolled compponent - when it controls the component by itself , by managing all its states

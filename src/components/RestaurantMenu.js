@@ -36,10 +36,14 @@ const RestaurantMenu = ()=>{
                 {cuisines.join(", ")} - {costForTwoMessage}
             </p>
 
-            {/* categories accordion */}
-            {categories.map((category) => (
-                <RestaurantCategory key={category?.card?.card.title} data={category?.card?.card} />
-            ))}
+            {/* categories accordion */} 
+            {categories.map((category, index) => ( 
+                <RestaurantCategory key={category?.card?.card.title}
+                 data={category?.card?.card}
+                 showItems = {index === 0 ? true : false}
+                /> 
+            ))} 
+
         </div>
     );
 };
