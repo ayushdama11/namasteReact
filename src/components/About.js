@@ -1,6 +1,7 @@
 import React from 'react';
 import User from './User';
 import UserClass from './UserClass';
+import UserContext from '../utils/UserContext';
 
 // class based component
 class About extends React.Component{
@@ -18,6 +19,12 @@ class About extends React.Component{
         return (
             <div>
                 <h1>About class component</h1>
+                <div>
+                    LoggedIn User
+                    <UserContext.Consumer>
+                        { (data) => console.log(data)}
+                    </UserContext.Consumer>
+                </div>
                 <h2>This is namaste react web series</h2>
                 <UserClass name={"Akshay Saini (class)"} location={"Dehradun Class"}/>
             </div>

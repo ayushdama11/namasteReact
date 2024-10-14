@@ -1,9 +1,10 @@
 import RestaurantCard, {withRatingsLabel} from "./RestaurantCard"; 
 // import resList from "../utils/mockData"; 
-import { useEffect, useState } from "react"; 
+import { useEffect, useState, useContext} from "react"; 
 import Shimmer from "./Shimmer"; 
 import {Link} from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 
 const Body = ()=>{ 
@@ -24,7 +25,7 @@ const Body = ()=>{
     // whenever state variable updates, react triggers a reconcilliation cycle i.e it re renders the componenets
     const [searchText, setSearchText]= useState(""); 
 
-    console.log("Body Rendered" , listOfRestaurants);
+    // console.log("Body Rendered" , listOfRestaurants);
 
     // displaying the higher order component - withRatingsLabel
     const RestaurantCardRated = withRatingsLabel(RestaurantCard);
@@ -49,7 +50,7 @@ const Body = ()=>{
             "https://www.swiggy.com/dapi/restaurants/list/v5?lat=31.3260152&lng=75.57618289999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
         ); 
         const json = await data.json(); 
-        console.log(json); 
+        // console.log(json); 
         // Optional Chaining  
         setlistOfRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
         setfilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
@@ -78,6 +79,8 @@ const Body = ()=>{
 
     const onlineStatus = useOnlineStatus();
     if(onlineStatus === false) return <h1>Looks like you are offline, please check your internet connection !!</h1>
+
+    const {loggedInUser, setUserName} = useContext(UserContext);
 
     return listOfRestaurants.length === 0 ? <Shimmer /> : (
         <div className="body">
@@ -117,6 +120,16 @@ const Body = ()=>{
                     >
                         Top Rated Restaurants
                     </button>
+                </div>
+                
+                <div className="search m-4 p-4 flex items-center rounded-lg">
+                    <label>UserName : </label>
+                    <input
+                     className="border border-black p-2" 
+                     value={loggedInUser}
+                     onChange={
+                        (e) => setUserName(e.target.value)
+                     }/>
                 </div>
             </div>
 

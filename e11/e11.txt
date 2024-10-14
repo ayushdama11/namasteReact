@@ -1,6 +1,23 @@
 higher order component is the function that takes a component and returns a component.
 
+Lifting state Up :- always we should have controlled components
 
 Controlled and Uncontrolled component :-
 Controlled component - when the component is controlled by the parent componenet than it is called controlled component
 Uncontrolled compponent - when it controls the component by itself , by managing all its states
+
+
+Props drilling :-
+- dummy data example - we are using the dummy data which is there in the restaurant Menu in the ItemList
+
+- so if i want to passss this data to the item loist component -> than i cant directly do these, so for this we have to bring this component to restaurant category and than use it 
+
+- these hierarchy issues is called as props drilling, where we actually bring all the data from parent to leaf by our own 
+
+- but we should avoid props drilling, so want a "global" thing where i can access it from any place ---- > so react gives use "React context" for solving these props drilling issues ..
+
+- importing createContext from react
+- importing useContext from react - for using context variable 
+
+- so in classed based functions , we use useContext.Consumer for getting data of useContext
+

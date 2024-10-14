@@ -1,5 +1,5 @@
 // we use import keyword for importing react into our project from node_modules
-import React, {lazy, Suspense} from "react";
+import React, {lazy, Suspense, useEffect, useState} from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import UserContext from "./utils/UserContext";
 // import Grocery from "./components/Grocery";
 
 // Chunking
@@ -19,12 +20,28 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 const Grocery = lazy(()=> import("./components/Grocery"));
 
 const AppLayout = ()=>{
+
+    const [userName, setUserName] = useState();
+
+    // authentication
+    useEffect(()=>{
+        // make an api call and send username and pswd
+        const data = {
+            name: "Ayush Dama",
+        };
+        setUserName(data.name);
+    }, []);
+
     return (
         <div className="app">
-            <Header />
-            {/* according to routes - the childrens will come at the place of Outlet component */}
-            <Outlet />
+            {/* <UserContext.Provider value={{loggedInUser: userName}}> */}
+            <UserContext.Provider value={{loggedInUser:userName , setUserName}}>
+                <Header /> 
+                {/* according to routes - the childrens will come at the place of Outlet component */}
+                <Outlet /> 
+            </UserContext.Provider> 
         </div>  
+
     );
 };
 
