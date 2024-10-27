@@ -34,14 +34,13 @@ const AppLayout = ()=>{
 
     return (
         <div className="app">
-            {/* <UserContext.Provider value={{loggedInUser: userName}}> */}
-            <UserContext.Provider value={{loggedInUser:userName , setUserName}}>
+            {/* <UserContext.Provider value={{loggedInUser: userName}}> */} 
+            <UserContext.Provider value={{loggedInUser: userName , setUserName}}> 
                 <Header /> 
                 {/* according to routes - the childrens will come at the place of Outlet component */}
                 <Outlet /> 
             </UserContext.Provider> 
         </div>  
-
     );
 };
 

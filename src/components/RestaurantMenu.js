@@ -24,14 +24,13 @@ const RestaurantMenu = ()=>{
     const {name, cuisines,costForTwoMessage} = resInfo?.cards[2]?.card?.card?.info;
 
     const {itemCards} = resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card;
-    
+
     // console.log(resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards);
 
     const handleSetShowIndex = (index) => {
         // If the same index is clicked, close the accordion; otherwise, open the new one
         setShowIndex(prevIndex => (prevIndex === index ? null : index));
     };
-
 
     const categories = 
         resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter
@@ -50,7 +49,8 @@ const RestaurantMenu = ()=>{
 
             {/* categories accordion */} 
             {categories.map((category, index) => ( 
-                <RestaurantCategory key={category?.card?.card.title}
+                <RestaurantCategory
+                 key={category?.card?.card.title}
                  data={category?.card?.card}
                  showItems = {index === showIndex ? true : false}
                  setShowIndex = {() => handleSetShowIndex(index)}
