@@ -1,0 +1,54 @@
+redux is not mandatory when using react
+used for managaing state
+
+zustand is same like redux
+
+redux offers easy debugging 
+
+redux dev tools - chrome extension
+
+rtk - redux toolkit
+
+// **** to write the data using redux
+when we click on the add button, it :-
+1. dispatches an action
+2. then it calls the function - [reducer function] - and this function modifies the cart - basically will update the slice
+ - we can't directly modify the cart
+
+
+// **** to get the data using redux
+- basically when i click on the add food item 
+- than it shoudl change the number of food items in the cart in the header  :-  basically to get the data from the cart
+
+so we use "selector" to read from our redux store containing slices and brings back that info to the header compoenent
+this phenomena is known as subscribing to the store
+
+
+
+import { createSlice } from "@reduxjs/toolkit";
+
+const cartSlice = createSlice({     // creating slices
+    name: 'cart',
+    initialState: {     // initial value
+        items: []   // right now cart is empty
+    },
+    reducers: {
+        // addItem is a dispatch function , and that in its right is the reducer function that modifies the slice of the store
+        addItem: (state, action) => {
+            state.items.push(action.payload);
+        },
+        removeItem: (state) => {
+            state.items.pop();  // removing one item from the end
+        },
+        clearCart: (state) => {
+            state.items.length = 0;     // to clear the cart
+        },
+    },
+});
+
+export const {addItem, removeItem, clearCart} = cartSlice.actions;
+
+export default cartSlice.reducer;   
+
+
+https://ankushwrites.medium.com/redux-short-note-911a5becd23e

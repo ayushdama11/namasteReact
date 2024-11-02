@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = ()=>{
     
@@ -10,6 +11,13 @@ const Header = ()=>{
     const onlineStatus = useOnlineStatus();
 
     const {loggedInUser} = useContext(UserContext);
+
+    // ** using selector for reading data from the slice 
+    // selector is a hook - useSelector
+    // useSelector give access tot he whole store
+    // subscribing to the store using the selector
+    const cartItems = useSelector((store) => store.cart.items); 
+    console.log(cartItems);
 
     // dependecy array is not mandatory only callback is mandatory
     // if no dependency array => useEffect is clled on every comopnent render
@@ -29,7 +37,7 @@ const Header = ()=>{
                     {/* Link to is more powerful than anchor tag, it does not re reload the page again and again */}
                     <li className="px-4"><Link to="/contact">Contact Us</Link></li>
                     <li className="px-4"><Link to="/grocery">Grocery</Link></li>
-                    <li className="px-4">Cart</li>
+                    <li className="px-4 font-bold text-xl"><Link to="/cart">Cart - ({cartItems.length} items)</Link></li>
                     <button className="login" onClick={()=>{
                          btnNameReact === "Login"
                           ? setbtnNameReact("Logout")
